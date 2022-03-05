@@ -149,6 +149,7 @@ public class ChessGame {
                 piece = result.board[0][rank];
                 result.board[0][rank] = null;
                 result.board[3][rank] = piece;
+                piece.file = 3;
                 return VALID_MOVE;
             } else {
                 return ILLEGAL_CASTLE;
@@ -169,6 +170,7 @@ public class ChessGame {
                 piece = result.board[7][rank];
                 result.board[7][rank] = null;
                 result.board[5][rank] = piece;
+                piece.file = 5;
                 return VALID_MOVE;
             } else {
                 return ILLEGAL_CASTLE;
