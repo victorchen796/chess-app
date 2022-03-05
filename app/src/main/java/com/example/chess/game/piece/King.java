@@ -43,11 +43,6 @@ public class King extends Piece {
                 }
             }
         }
-        System.out.print(color + " king moves: ");
-        for (Move m : moves) {
-            System.out.print("[" + m.file + "," + m.rank + "] ");
-        }
-        System.out.println();
     }
 
     public void copyToBoard(Piece[][] board) {
