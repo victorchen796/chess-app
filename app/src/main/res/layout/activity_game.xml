@@ -2196,6 +2196,7 @@
             android:id="@+id/promote_queen_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:backgroundTint="#FFFFFF"
             android:onClick="promoteQueen"
             tools:ignore="SpeakableTextPresentCheck" />
 
