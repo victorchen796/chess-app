@@ -300,6 +300,7 @@ public class GameActivity extends AppCompatActivity {
     public void playAgain(View view) {
         text.setText(": Your turn to move.");
         setGameOverButtons(View.GONE);
+        setDefaultButtons(View.VISIBLE);
 
         chessGame = new ChessGame();
         backgrounds = new ArrayList<>();
@@ -342,6 +343,7 @@ public class GameActivity extends AppCompatActivity {
 
         if (result == PAWN_PROMOTION) {
             text.setText(": What to promote to?");
+            setDefaultButtons(View.GONE);
             setPromotionButtons(View.VISIBLE);
             setPromotionIcons(chessGame.playerTurn);
 
@@ -385,6 +387,7 @@ public class GameActivity extends AppCompatActivity {
                 ((ImageView) findViewById(R.id.player_turn_icon)).setImageResource(R.drawable.ic_white_king);
             }
             text.setText(result == CHECKMATED ? ": Checkmate. You win!" : ": Stalemate. Draw!");
+            setDefaultButtons(View.GONE);
             setGameOverButtons(View.VISIBLE);
 
             index = chessGame.game.size() - 1;
@@ -415,6 +418,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void promote(int pieceType) {
         setPromotionButtons(View.GONE);
+        setDefaultButtons(View.VISIBLE);
 
         int result = chessGame.promote(pieceType, selectedFile, selectedRank);
         chessGame.updateAllMoves(chessGame.currentBoard);
@@ -454,6 +458,7 @@ public class GameActivity extends AppCompatActivity {
                 ((ImageView) findViewById(R.id.player_turn_icon)).setImageResource(R.drawable.ic_white_king);
             }
             text.setText(result == CHECKMATED ? ": Checkmate. You win!" : ": Stalemate. Draw!");
+            setDefaultButtons(View.GONE);
             setGameOverButtons(View.VISIBLE);
 
             index = chessGame.game.size() - 1;
@@ -528,6 +533,7 @@ public class GameActivity extends AppCompatActivity {
                 ((ImageView) findViewById(R.id.player_turn_icon)).setImageResource(R.drawable.ic_white_king);
             }
             text.setText(result == CHECKMATED ? ": Checkmate. You win!" : ": Stalemate. Draw!");
+            setDefaultButtons(View.GONE);
             setGameOverButtons(View.VISIBLE);
 
             index = chessGame.game.size() - 1;
@@ -542,7 +548,10 @@ public class GameActivity extends AppCompatActivity {
 
     public void draw(View view) {
         text.setText(": Draw!");
+        setDefaultButtons(View.GONE);
         setGameOverButtons(View.VISIBLE);
+
+        findViewById(R.id.draw_button).setVisibility(View.GONE);
 
         index = chessGame.game.size() - 1;
         preventMoves = true;
@@ -555,7 +564,10 @@ public class GameActivity extends AppCompatActivity {
             ((ImageView) findViewById(R.id.player_turn_icon)).setImageResource(R.drawable.ic_white_king);
         }
         text.setText(": Resigned. You win!");
+        setDefaultButtons(View.GONE);
         setGameOverButtons(View.VISIBLE);
+
+        findViewById(R.id.resign_button).setVisibility(View.GONE);
 
         index = chessGame.game.size() - 1;
         preventMoves = true;
