@@ -29,6 +29,7 @@ public class ChessGame {
     static final int INVALID_PLAYER_TURN = 6;
     static final int CHECKED = 7;
     static final int CHECKMATED = 8;
+    static final int STALEMATED = 9;
 
     static final int DRAW = 0;
     static final int WHITE_RESIGNS = 1;
@@ -253,7 +254,7 @@ public class ChessGame {
         }
         return false;
     }
-    public boolean isCheckmated(Piece[][] board, boolean color) {
+    public boolean isMated(Piece[][] board, boolean color) {
         updateAllMoves(board);
         boolean checkmated = true;
         BoardHolder result = new BoardHolder(null);
@@ -334,12 +335,16 @@ public class ChessGame {
         game.add(currentBoard);
         updateAllMoves(currentBoard);
 
-        if (isChecked(currentBoard, !playerTurn)) {
+        boolean checked = isChecked(currentBoard, !playerTurn);
+        if (isMated(currentBoard, !playerTurn)) {
+            if (checked) {
+                gameEndType = playerTurn ? BLACK_CHECKMATES : WHITE_CHECKMATES;
+                outcome = CHECKMATED;
+            } else {
+                outcome = STALEMATED;
+            }
+        } else if (checked) {
             outcome = CHECKED;
-        }
-        if (isCheckmated(currentBoard, !playerTurn)) {
-            gameEndType = playerTurn ? BLACK_CHECKMATES : WHITE_CHECKMATES;
-            outcome = CHECKMATED;
         }
 
         playerTurn = !playerTurn;
@@ -380,12 +385,16 @@ public class ChessGame {
         updateAllMoves(currentBoard);
 
         int outcome = PAWN_PROMOTION;
-        if (isChecked(currentBoard, !playerTurn)) {
+        boolean checked = isChecked(currentBoard, !playerTurn);
+        if (isMated(currentBoard, !playerTurn)) {
+            if (checked) {
+                gameEndType = playerTurn ? BLACK_CHECKMATES : WHITE_CHECKMATES;
+                outcome = CHECKMATED;
+            } else {
+                outcome = STALEMATED;
+            }
+        } else if (checked) {
             outcome = CHECKED;
-        }
-        if (isCheckmated(currentBoard, !playerTurn)) {
-            gameEndType = playerTurn ? WHITE_CHECKMATES : BLACK_CHECKMATES;
-            outcome = CHECKMATED;
         }
 
         playerTurn = !playerTurn;
