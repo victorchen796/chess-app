@@ -14,12 +14,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void startButton(View view) {
+    public void start(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 
-    public void exitButton(View view) {
+    public void exit(View view) {
         finish();
         System.exit(0);
     }
