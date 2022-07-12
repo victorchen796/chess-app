@@ -1,6 +1,6 @@
 # ![logo.png](resources/logo.png) Chess for Android
 
-Chess is a 2-player chess app for Android written in Java implementing the [MVC software design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller).
+Chess is a 2-player chess app for Android written in Java implementing the MVC software design pattern.
 
 It implements all standard rules for chess and additionally allows the user to undo the most recent move, generate a random legal move, and view a game right after completion.
 
